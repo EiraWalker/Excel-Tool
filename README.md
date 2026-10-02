@@ -29,3 +29,7 @@ powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File '.\tests\Integratio
 ```
 
 测试只使用 artifacts 下的独立工作簿，覆盖创建、多类公式、同名更新、保存后重新打开、原生结构和前置拒绝条件，不修改用户策划文档。
+
+## License
+
+本项目采用 [MIT License](LICENSE)。
