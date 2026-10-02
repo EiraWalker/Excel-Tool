@@ -1,0 +1,7 @@
+interface:
+  display_name: "Excel Tool"
+  short_description: "用 LaTeX 创建和更新 Excel 原生可编辑数学公式，并检查分式、上下标和保存结果"
+  default_prompt: "使用 $excel-tool 将这些 LaTeX 数学公式写入指定 Excel 工作簿，并验证显示与原生公式保存结果。"
+policy:
+  allow_implicit_invocation: true
+

@@ -1,0 +1,12 @@
+.codex/
+.agents/
+**/config.local.json
+**/__pycache__/
+*.py[cod]
+artifacts/
+.excel-latex-artifacts/
+*.xlsx
+*.xlsm
+*.png
+*.pdf
+*.log

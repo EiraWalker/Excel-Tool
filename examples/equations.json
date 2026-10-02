@@ -1,0 +1,9 @@
+{
+  "equations": [
+    {"name": "HeatExchange", "sheet": "Math", "anchor": "A3:F3", "row_height": 60, "latex": "D=\\frac{T_A-T_B}{2}\\times k_A\\times k_B"},
+    {"name": "TemperatureA", "sheet": "Math", "anchor": "A5:F5", "row_height": 36, "latex": "T_A'=T_A-D"},
+    {"name": "Destruction", "sheet": "Math", "anchor": "A7:F7", "row_height": 72, "latex": "D(F,R)=\\begin{cases}1,&F\\ge R\\quad\\text{物体被破坏}\\\\0,&F<R\\quad\\text{物体未被破坏}\\end{cases}"},
+    {"name": "Ignition", "sheet": "Math", "anchor": "A9:F9", "row_height": 72, "latex": "I=\\begin{cases}1,&F>0\\land O>O_{\\min}\\land T\\ge T_{\\mathrm{crit}}\\\\0,&\\text{其他情况}\\end{cases}"},
+    {"name": "CriticalTemperature", "sheet": "Math", "anchor": "A11:F12", "row_height": 44, "latex": "\\begin{aligned}T_{\\mathrm{crit}}&=T_{\\mathrm{ign}}+\\alpha_H H^p+\\alpha_F(1-F)^q\\\\&\\quad+\\alpha_O\\max\\left(0,\\frac{O_{\\mathrm{ref}}-O}{O_{\\mathrm{ref}}-O_{\\min}}\\right)\\end{aligned}"}
+  ]
+}
