@@ -16,7 +16,7 @@ powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File '.\excel-tool\scrip
 
 详细字段与边界见 [单元格富文本](excel-tool/references/cell-math.md)。既有文本需显式 `replace_text: true`，不覆盖计算公式；分式、分段函数等二维结构会在修改前拒绝，使用下方原生模式处理。
 
-## 原生 OfficeMath
+## 原生 OfficeMath Latex粘贴方法
 
 ```powershell
 powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File '.\excel-tool\scripts\Excel-Latex.ps1' -Operation Inspect -Workbook 'D:\Docs\设计.xlsx'
