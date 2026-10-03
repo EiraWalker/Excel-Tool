@@ -1,20 +1,27 @@
 ---
 name: excel-tool
-description: 在 Windows Microsoft Excel 中用 LaTeX 创建、批量排版和更新原生可编辑数学公式，支持分式、上下标、分段函数和多行公式，并验证保存后的 OfficeMath。用于 Excel 策划表、数学说明表及已有公式编辑；普通单元格计算公式不触发此能力。
+description: 在 Windows Microsoft Excel 中编辑数学排版：将行内 LaTeX 字母、希腊符号和上下标写入真实单元格富文本，或创建分式、分段函数等原生 OfficeMath。适用于策划表的参数、状态属性、含义说明和数学公式排版，支持批量更新与保存结构验证；普通单元格计算公式不触发此能力。
 ---
 
 # Excel Tool
 
-使用本技能随附的 `scripts/Excel-Latex.ps1` 将数学 LaTeX 粘贴到 Excel 原生公式编辑区。它控制本机 Microsoft Excel；不是 Office.js 或已连接 Excel 会话工具。用户要求在 Excel 中创建/编辑数学排版公式时可自动使用，不需要再次询问已经授权的文件修改。
+使用随附脚本控制本机 Microsoft Excel。用户要求在 Excel 中编辑数学排版时可自动使用，不需要再次询问已经授权的文件修改。
+
+## 选择表示方式
+
+- **参数字母、上下标、中文说明混排、明确要求放进单元格**：使用 `scripts/Excel-CellMath.ps1`。它将行内 LaTeX 编译为单元格 `Characters.Font` 富文本，默认中文 MiSans、数学字母 Cambria 正体，直接设置真实 Subscript / Superscript，不插入文本框，也不在字母与上下标间补空格。字段、支持范围和调用见 [references/cell-math.md](references/cell-math.md)。
+- **二维分式、分段函数、根式、多行结构**：使用 `scripts/Excel-Latex.ps1`。结果是浮动形状中的原生可编辑 OfficeMath；下文介绍此模式。
+- 普通单元格不能实现完整二维 LaTeX。单元格模式会在修改前拒绝不支持的结构。不要自行换成文本框、图片或改变公式含义；用户要求保留单元格时，明确指出冲突再确定表示方式。
+- 保持已确定的字体方案。普通单元格字母使用 **Cambria 正体**，避免 Cambria Math 或斜体导致上下标间距过大。OfficeMath 字体与单元格字母字体分别处理。
 
 ## 前提与范围
 
-- Windows 交互式桌面、Windows PowerShell 5.1、Microsoft 365 Excel Build 20131 或更新版本。已在 2609 / 16.0.20430.20032 验证。
+- Windows 交互式桌面、Windows PowerShell 5.1、本机 Microsoft Excel，以及选用的字体。原生 OfficeMath 模式另需 Microsoft 365 Excel Build 20131 或更新版本，已在 2609 / 16.0.20430.20032 验证。
 - 文件为 `.xlsx` 或 `.xlsm`，明确指定完整路径和工作表；默认只操作已打开的同名完整路径工作簿。用户要求打开现有文件时用 `-Open`；创建新文件时用 `-Create`。不关闭其他工作簿或终止 Excel。
-- 编辑前工作簿应已保存、可写、工作表未保护，AutoSave 关闭。脚本拒绝覆盖未保存的修改和无工具标记的既有形状。若 Excel 存在多个实例，找不到指定工作簿时说明边界，不猜测或重开成只读副本。
-- 数学公式是浮动形状中的 OfficeMath，不是单元格计算式。需要保留 LaTeX 源码时，在用户指定位置另存 JSON 计划；不要向策划表塞入实现说明。
+- 编辑前工作簿应已保存、可写、工作表未保护，AutoSave 关闭。两种模式均拒绝覆盖未保存修改；单元格模式保留既有形状，原生模式拒绝覆盖无工具标记的形状。若存在多个 Excel 实例，找不到指定工作簿时说明边界，不猜测或重开成只读副本。
+- 两种模式均为数学显示，不是 Excel 计算式。需要保留 LaTeX 源码时，在用户指定位置另存 JSON 计划；不要向策划表塞入实现说明。
 
-## 调用
+## 原生 OfficeMath 调用
 
 从当前技能所在目录解析脚本绝对路径，用 `powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File <完整脚本路径>`。脚本使用 UTF-8 BOM，可直接 `-File`，不需要此前临时脚本的 `ReadAllText` workaround。
 

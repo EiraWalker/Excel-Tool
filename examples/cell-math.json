@@ -1,0 +1,38 @@
+{
+  "text_font": "MiSans",
+  "math_font": "Cambria",
+  "text_size": 12,
+  "math_size": 14,
+  "cells": [
+    {
+      "sheet": "CellMath",
+      "cell": "B2",
+      "row_height": 60,
+      "segments": [
+        { "text": "有效点燃温度 " },
+        { "latex": "T_{\\mathrm{crit}}" },
+        { "text": "：用于点燃条件判断。\n基础温度 " },
+        { "latex": "T_{\\mathrm{ign}}" },
+        { "text": "：不含湿润、可燃性和氧气惩罚。" }
+      ]
+    },
+    {
+      "sheet": "CellMath",
+      "cell": "B4",
+      "row_height": 44,
+      "segments": [
+        { "text": "氧气惩罚为 " },
+        { "latex": "\\alpha_O(1-O)^r" },
+        { "text": "；氧气越多，温度惩罚越小。" }
+      ]
+    },
+    {
+      "sheet": "CellMath",
+      "cell": "B6",
+      "row_height": 44,
+      "segments": [
+        { "latex": "T_{\\mathrm{crit}}=T_{\\mathrm{ign}}+\\alpha_H H^p+\\alpha_F(1-F)^q+\\alpha_O(1-O)^r" }
+      ]
+    }
+  ]
+}
